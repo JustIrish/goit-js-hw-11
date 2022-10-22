@@ -9,20 +9,10 @@ const options = {
 };
 
 export async function getPictures(value) {
-  try {
-    const response = await axios.get(
-      `${BASE_URL}?key=${API_KEY}&q=${value}&per_page=10&page=1`,
-      options
-    );
-    console.log(response.data.hits);
-    if (response.data.hits.length === 0) {
-      throw new Error('');
-    }
-    return await response.data.hits;
-  } catch (error) {
-    console.log('error');
-    // Notify.failure(
-    //   'Sorry, there are no images matching your search query. Please try again.'
-    // );
-  }
+  const response = await axios.get(
+    `${BASE_URL}?key=${API_KEY}&q=${value}&per_page=10&page=1`,
+    options
+  );
+  const data = await response.data;
+  return data;
 }
