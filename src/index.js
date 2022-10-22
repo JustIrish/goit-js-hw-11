@@ -24,7 +24,6 @@ function onSearch(evt) {
         throw new Error('');
       }
       console.log(data);
-      console.log(markup(data.hits));
       gallery.insertAdjacentHTML('beforeend', markup(data.hits));
     })
     .catch(error => {

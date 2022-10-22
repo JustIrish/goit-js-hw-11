@@ -11,3 +11,43 @@ body {
   color: #212121;
   line-height: 1.5;
 }
+
+p {
+  margin: 0;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  /* height: auto; */
+  height: calc(100% * 0.785);
+  object-fit: cover;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+}
+
+.photo-card {
+  width: calc((100% - 60px) / 4);
+
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 0px 0px 4px 4px;
+}
+
+.info {
+  font-size: 13px;
+
+  display: flex;
+  text-align: center;
+  padding: 10px 0;
+}
