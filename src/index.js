@@ -25,6 +25,7 @@ function onSearch(evt) {
       }
       console.log(data);
       gallery.insertAdjacentHTML('beforeend', markup(data.hits));
+      new SimpleLightbox('.photo-card-link');
     })
     .catch(error => {
       Notify.failure(
