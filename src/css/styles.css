@@ -37,6 +37,7 @@ img {
 
 .photo-card-link {
   width: calc((100% - 30px) / 4);
+  height: calc((100vw / 4 - 10px * 2)*0.85);
 }
 
 .photo-card {
