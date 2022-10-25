@@ -46,8 +46,11 @@ async function onLoad(entries) {
   const add = await entries.forEach(entry => {
     if (entry.isIntersecting) {
       page += 1;
+
       fetchGallery(searchQuery, page).then(obj => {
         gallery.insertAdjacentHTML('beforeend', markup(obj.hits));
+        if (page > 1) smoothScrolling();
+
         if (obj.hits.length === 0 || page === 13) {
           Notify.info(
             "We're sorry, but you've reached the end of search results."
@@ -88,4 +91,13 @@ async function fetchGallery(searchQuery, page) {
     });
   console.log(pictures);
   return pictures;
+}
+
+function smoothScrolling() {
+  const { height: cardHeight } =
+    gallery.firstElementChild.getBoundingClientRect();
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: 'smooth',
+  });
 }
