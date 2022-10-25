@@ -1,0 +1,40 @@
+.search-form {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background-color: #32762e;
+}
+
+.search-form input {
+  width: 250px;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 3px 0px 0px 3px;
+  border: none;
+}
+
+.search-form button {
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 0px 3px 3px 0px;
+  border: none;
+  cursor: pointer;
+}
+
+.icon {
+  display: block;
+
+  stroke-width: 0;
+  fill: #333d31;
+}
+
+.btn:hover .icon {
+  transform: scale(1.1);
+}
+
+.btn:active {
+  transform: scale(0.95);
+}

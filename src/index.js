@@ -1,10 +1,9 @@
-import './css/styles.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-import { getPictures } from './fetchPictures';
-import markup from './templates/markup.hbs';
+import { getPictures } from './js/fetchPictures';
+import markup from './js/templates/markup.hbs';
 
 const form = document.querySelector('#search-form');
 const gallery = document.querySelector('.gallery');
@@ -49,7 +48,7 @@ async function onLoad(entries) {
       page += 1;
       fetchGallery(searchQuery, page).then(obj => {
         gallery.insertAdjacentHTML('beforeend', markup(obj.hits));
-        if (page * 40 > obj.totalHits) {
+        if (obj.hits.length === 0 || page === 13) {
           Notify.info(
             "We're sorry, but you've reached the end of search results."
           );
@@ -71,7 +70,7 @@ function createGallery(obj) {
 async function fetchGallery(searchQuery, page) {
   const pictures = await getPictures(searchQuery, page)
     .then(data => {
-      if (data.hits.length === 0) {
+      if (data.totalHits === 0) {
         Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.',
           { clickToClose: true }
@@ -81,9 +80,7 @@ async function fetchGallery(searchQuery, page) {
       if (page === 1) {
         Notify.success(`Hooray! We found ${data.totalHits} images.`);
       }
-      // if (data.totalHits < 40) {
-      //   return data;
-      // }
+
       return data;
     })
     .catch(error => {
